@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        몸무게(kg) <input type=number id=kg> <br>
+        키 (cm) <input type=number id=cm> <br>
+        <button onclick="Bmi()"> BMI 계산 </button>
+         <script>
+            function Bmi() {
+                var kg = document.getElementById('kg').value *=1;
+                var cm = document.getElementById('cm').value *=0.1;
+                alert( "당신의 BMI는 " + kg / (cm**2) + " 입니다. ");
+            }
+        </script>
+</body>
+</html>
