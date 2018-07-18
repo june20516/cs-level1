@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>화씨를 섭씨로 변환하자!</h1>
+    화씨 (˚F) <input type=number id=fo> <br>
+    <button onclick="Conv()"> 변환 </button>
+    <h3>섭씨 온도는 </h3>
+    <span id = 'co'>섭씨</span> (˚C)
+     입니다.
+    <script>
+    function Conv() {
+        var fo = document.getElementById('fo').value *=1;
+        co.innerHTML = ( fo - 32 ) / 1.8;
+    }
+    </script>
+</body>
+</html>
