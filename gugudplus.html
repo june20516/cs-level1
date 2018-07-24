@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>구구단 추가 미션</title>
+</head>
+<body>
+    <script>
+    gugu = {};
+    gugu.first = -1;
+    gugu.second = -1;
+    gugu.result = [];
+    gugu.n = -1;
+    gugu.calcul = function (m) {
+        for (var t = 1; t <= this.second; t++){
+            this.result[t] = m * t;
+            console.log(m + "단 " + t + "  " + this.result[t]);
+        }
+    }
+    gugu.print = function (n) {
+        document.write( "<br>" + n + " 단<br>")
+        for (var i = 2; i<= this.second; i++) {
+            document.write(n + " * " + i + " = " + this.result[i] + "<br>");
+        }
+    }
+    
+    gugu.main = function () {
+        var ipt = prompt ("2~9사이의 정수를 n,m형식으로 입력하세요");
+        arr = ipt.split(",");
+        this.first = arr.shift()*1;
+        this.second = arr.pop()*1;
+        document.write("<h3>" + this.first + " , " + this.second + " 단</h3>");
+        for (var i = 2; i<=this.first; i++) {
+            this.calcul(i);
+            this.print(i);
+        }
+    }
+    gugu.main();
+
+    </script>
+</body>
+</html>
