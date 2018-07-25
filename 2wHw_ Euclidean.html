@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>유클리드 호제법</title>
+</head>
+<body>
+    <script>
+    //유클리드 호제법
+    Uc = {};
+    Uc.arr = [];
+    Uc.rem = -1;
+    Uc.GCD = -1;
+    Uc.step = ("");
+    
+    //입력부
+    Uc.inPut = function () {
+        var strI = prompt("최대 공약수를 찾을 2개의 자연수를 쓰세요.(ex: 24,12)");
+        var ipt = strI.split(",");
+        for(var i = 0; i<2; i++) {
+        ipt[i] = Number(ipt[i]);
+        }
+        if ( ipt[0] > ipt[1] ) {
+            this.arr[0] = ipt[0]; this.arr[1] = ipt[1];
+        } else {
+            this.arr[0] = ipt[1]; this.arr[1] = ipt[0];
+        }
+    }
+    
+    //계산부
+    Uc.calcul = function (a) {
+        this.rem = this.arr[a] % this.arr[a+1];
+    }
+
+    Uc.addRem = function (a) {
+        this.arr.push(a);
+    }
+
+    //출력부
+    Uc.print = function(a) {
+        for (var i = 0; i < this.arr.indexOf(a); i++) {
+            this.step += (this.arr[i] + ' --- ' + this.arr[i+1] + '<br>');
+        }
+        return this.step;
+    
+    }
+
+    //동작부
+    Uc.main = function() {
+        this.inPut();
+        for(var i = 0; true; i++) {
+            this.calcul(i);
+            this.addRem(this.rem);
+            if ( this.rem === 0){
+                break; }
+        }
+    this.print(this.rem);
+    this.GCD = this.arr[this.arr.length - 2];
+    var quest = document.getElementById('quest');
+    quest.innerHTML = this.arr[0] + '  , ' + this.arr[1];
+    var procces = document.getElementById('process');
+    proccess.innerHTML = this.step;
+    var answer = document.getElementById('answer');
+    answer.innerHTML = ' ⟪ ' + this.GCD + ' ⟫ ' ;
+    }
+    </script>
+    <h2> 유클리드 호제법으로 최대공약수 구하기 </h2>
+    
+    <p>
+        유클리드 호제법은 2개의 자연수 또는 정식의 최대공약수를 구하는 알고리즘의 하나이다. <br>
+        호제법이란 두 수가 서로 상대방 수를 나누어서 결국 원하는 수를 얻는 알고리즘을 나타낸다. 
+    </p>
+    <h3>최대공약수 계산기</h3>
+    <button onclick='Uc.main();'>실행</button>
+    <h5>계산할 숫자</h5>
+    <p id = 'quest'>a  , b</p>
+    <h5>계산 과정</h5>
+    <p id = 'proccess'>a --- b<br>b --- r<br>r --- r`<br> ...<br> ...</p>
+    <h5>최대 공약수는..</h5>
+    <p id = 'answer'> ⟪ _________ ⟫ </p>
+    입니다.
+
+</body>
+</html>
