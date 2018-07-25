@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var print10 = function () {
+        for ( var i = 1; i<11; i++) {
+            console.log(i);
+        }
+    }
+    var printN = function (n) {
+        for (var i = 1; i<=n; i++) {
+            console.log(i);
+        }
+    }
+    var isEven = function(n) {
+        return n%2 === 0
+    }
+    var myReminder = function (a,b) {
+        return a%b
+    }
+    var square = function(n) {
+        for(var i = 1; i<=n; i++) {
+            for(var j = 1; j<=n; j++) {
+                document.write('😃');
+            }
+        document.write('<br>')
+        }
+    }
+
+    print10();
+    printN(5);
+    var iE1 = isEven(1004);
+    iE1;
+    var iE2 = isEven(501);
+    iE2;
+    var mR1 = myReminder(244, 20);
+    mR1;
+    var mR2 = myReminder(21,7);
+    mR2;
+    square(4);
+    </script>
+</body>
+</html>
