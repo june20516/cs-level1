@@ -8,11 +8,15 @@
 </head>
 <body>
     <script>
-    var a = prompt("몇단을 출력할까요?");
-    a *= 1;
-    document.write("구구단 " + a + " 단" + "<br>");
+    var strN = prompt("몇단을 출력할까요?");
+    var n = Number(strN);
+    while (!Number.isInteger(n) || (n<2 ||n>9 ) ) {
+    strN = prompt("몇단을 출력할까요? <br> 2~9 사이의 정수를 입력해주세요.");
+    n = Number(strN);
+    }
+    document.write("구구단 " + n + " 단" + "<br>");
     for (var i = 1; i <=9; i++) {
-    document.write( a + " * " + i + " = " + a*i + "<br>");
+    document.write( n + " * " + i + " = " + n*i + "<br>");
     }
     </script>
 </body>
