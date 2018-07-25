@@ -38,17 +38,31 @@
         this.arr.push(a);
     }
 
+    //결정부
+    Uc.getGCD = function(a) {
+        var n = this.arr.indexOf(a) - 1;
+        this.GCD = this.arr[n];
+    }
+
     //출력부
     Uc.print = function(a) {
         for (var i = 0; i < this.arr.indexOf(a); i++) {
             this.step += (this.arr[i] + ' --- ' + this.arr[i+1] + '<br>');
         }
         return this.step;
-    
+    }
+
+    //초기화부
+    Uc.reLoad = function() {
+        this.arr = [];
+        this.rem = -1;
+        this.GCD = -1;
+        this.step = ("");
     }
 
     //동작부
     Uc.main = function() {
+        this.reLoad();
         this.inPut();
         for(var i = 0; true; i++) {
             this.calcul(i);
@@ -56,18 +70,18 @@
             if ( this.rem === 0){
                 break; }
         }
-    this.print(this.rem);
-    this.GCD = this.arr[this.arr.length - 2];
-    var quest = document.getElementById('quest');
-    quest.innerHTML = this.arr[0] + '  , ' + this.arr[1];
-    var procces = document.getElementById('process');
-    proccess.innerHTML = this.step;
-    var answer = document.getElementById('answer');
-    answer.innerHTML = ' ⟪ ' + this.GCD + ' ⟫ ' ;
+        this.getGCD(this.rem);
+        this.print(this.rem);
+        var quest = document.getElementById('quest');
+        quest.innerHTML = this.arr[0] + '  , ' + this.arr[1];
+        var procces = document.getElementById('process');
+        proccess.innerHTML = this.step;
+        var answer = document.getElementById('answer');
+        answer.innerHTML = ' ⟪ ' + this.GCD + ' ⟫ ' ;
     }
     </script>
+
     <h2> 유클리드 호제법으로 최대공약수 구하기 </h2>
-    
     <p>
         유클리드 호제법은 2개의 자연수 또는 정식의 최대공약수를 구하는 알고리즘의 하나이다. <br>
         호제법이란 두 수가 서로 상대방 수를 나누어서 결국 원하는 수를 얻는 알고리즘을 나타낸다. 
