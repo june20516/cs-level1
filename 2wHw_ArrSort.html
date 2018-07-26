@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>배열 정렬 연습 문제</title>
+</head>
+<body>
+    <script>
+    Arr = {};
+    Arr.aRR = [];
+    Arr.arrAll = (""); //배열 출력 요소
+    Arr.sorted = (""); //배열 정렬 출력 요소
+    Arr.com = (""); //정렬 확인 요소
+
+//Arr 입력
+    Arr.inPut = function () {
+        for (var i = 0; true; i++) {
+            var ipt = prompt("배열에 입력할 숫자를 쓰세요. (종료하려면 n을 입력)");
+            if (ipt === "n") {
+                break;
+            } else {
+            this.aRR[i] = ipt*1;
+            }
+        }
+    }
+
+//Arr 검사
+    //오름차순인지
+    Arr.Bcheck = function () {
+        var a = 0;
+        for (var i=0; i<this.aRR.length; i++) {
+            a = i;
+            console.log("B"+i)
+            if(this.aRR[i]>this.aRR[i+1]) {
+                console.log('B break');
+                break;
+            }
+        }
+        if (a === this.aRR.length-1) {
+            console.log('bigger');
+            this.com = "bigger";
+        }
+    }    
+        //내림차순인지
+    Arr.Scheck = function () {
+        var b = 0;
+        for (var i=0; i<this.aRR.length; i++) {
+            b = i;
+            console.log("S"+i)
+            if(this.aRR[i]<this.aRR[i+1]) {
+                console.log('S break');
+                break;
+            }
+        }
+        if (b === this.aRR.length-1) {
+            console.log('smaller');
+            this.com = "smaller";
+        }else{
+            this.com = "noS";
+        }
+    }
+    
+    Arr.check = function() {
+        this.com=("");
+        this.Bcheck();
+        if (this.com === "bigger") {
+            this.sorted = "오름차순입니다.";
+        }else{
+            this.Scheck();
+        }
+        if (this.com === "smaller") {
+            this.sorted = "내림차순입니다.";
+        }else if(this.com === "noS") {
+            this.sorted = "정렬되지 않았습니다.";
+        }
+    }
+    ///////아 .. 오름차순 검사를 먼저 한다. com이 false가 되면 내림차순 검사로 간다. 내림차순도 false면 정렬 X
+    ///오름차순 검사에서 true면 오름차순.
+    ///내림차순 검사에서 true면 내림차순.
+
+    
+//Arr 정렬
+    Arr.big = function (a,b) { // 오름차순 정의
+        return a-b;
+    }
+    Arr.small = function (a,b) { // 내림차순 정의
+        return b-a;
+    }
+
+    Arr.asc = function () { //오름차순 정렬 실행
+        this.aRR.sort(this.big);
+        this.check();
+        arrAll.innerHTML=this.aRR;
+        sorted.innerHTML=this.sorted;
+    }
+    Arr.des = function () {  //내림차순 정렬 실행
+        this.aRR.sort(this.small);   
+        arrAll.innerHTML=this.aRR;
+        this.check();
+        arrAll.innerHTML=this.aRR;
+        sorted.innerHTML=this.sorted;
+    }
+
+//구동
+    Arr.main = function () {
+        this.inPut();
+        this.check();
+        arrAll = document.getElementById('arrAll');
+        arrAll.innerHTML=this.aRR;
+        sorted = document.getElementById('sorted');
+        sorted.innerHTML=this.sorted;
+    }
+    </script>
+    <h2>배열 입력하고 정렬하기</h2>
+
+    숫자를 연속으로 입력해 배열을 만듭니다. 입력을 끝낼 때는 소문자n을 입력합니다.<br>
+    <button onclick = 'Arr.main();'>입력</button>
+    <br><br>
+
+    입력하신 배열은<br> [<span id = 'arrAll' style='color : blue'> , , , ...</span>] <br>입니다.<br><br>
+
+    해당 배열은 <span id = 'sorted' style='color : blue'>정렬되어 있을까요?</span><br><br>
+
+    배열을 정렬하시겠습니까?<br>
+    <button onclick = 'Arr.asc();'>오름차순</button><button onclick = 'Arr.des();'>내림차순</button>
+
+
+</body>
+</html>
