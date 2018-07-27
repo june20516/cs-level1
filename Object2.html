@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var Human = function ( name, hp, power) {
+        this.name = name;
+        this.hp = hp;
+        this.power = power;
+        this.attack = function (target) {
+            target.hp -= this.power;
+        };
+        this.show = function() {
+            console.log("%s %d %d", this.name, this.hp, this.power);
+        };
+        this.eat  = function(food) {
+            this.hp += food.energy;
+        };
+    };
+
+    var Food = function (name, energy) {
+        this.name = name;
+        this.energy = energy;
+        this.show = function () {
+            console.log('%s %d', this.name, this.energy);
+        };
+    };
+
+    var h1 = new Human('bran', 100, 30);
+    var h2 = new Human('junho', 100, 30);
+    var c = new Food('chickensoup', 100);
+    h1.show();
+    h2.show();
+    c.show();
+    h1.attack(h2);
+    console.log('h1 attack h2');
+    h2.show();
+    h2.eat(c);
+    console.log('h2 eat chickensoup');
+    h2.show();
+
+    </script>
+</body>
+</html>
