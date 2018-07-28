@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <style>
+            div {
+                font-family: "Courier New", Courier, monospace;
+                font-size: 2em;    
+            }
+            button { font-size:23px;
+                width : 40px;
+                height : 28px;
+            }
+            #outbox { position : absolute;
+                top : 60px; left : 10px;
+                width : 217px;
+                height : 50px;
+                font-size : 30px;
+                color : snow;
+                background-color : rgb(33, 85, 112);
+                text-align : right;
+                line-height : 50px;
+            }
+            #Nbtn { position : absolute;
+                top : 120px; left : 10px;
+                }
+            
+        </style>
+        
+</head>
+<body>
+    <h1 style="margin-left:65px;"> 계산기 </h1>
+    <p id = outbox> &nbsp;0</p>
+    <div>
+        
+        <p id = Nbtn>
+            <button id = 'sev' class = 'num' onclick = 'ipt.Num(7);'> 7 </button>
+            <button id = 'eit' class = 'num' onclick = 'ipt.Num(8);'> 8 </button>
+            <button id = 'nin' class = 'num' onclick = 'ipt.Num(9);'> 9 </button>
+            <button id = 'plu' class = 'opr' onclick = 'cal.opt("+");'> + </button>
+            <br>
+            <button id = 'For' class = 'num' onclick = 'ipt.Num(4);'> 4 </button>
+            <button id = 'fiv' class = 'num' onclick = 'ipt.Num(5);'> 5 </button>
+            <button id = 'six' class = 'num' onclick = 'ipt.Num(6);'> 6 </button>
+            <button id = 'min' class = 'opr' onclick = 'cal.opt("-");'> - </button>
+            <br>
+            <button id = 'one' class = 'num' onclick = 'ipt.Num(1);'> 1 </button>
+            <button id = 'two' class = 'num' onclick = 'ipt.Num(2);'> 2 </button>
+            <button id = 'thr' class = 'num' onclick = 'ipt.Num(3);'> 3 </button>
+            <button id = 'mul' class = 'opr' onclick = 'cal.opt("X");'> X </button>
+            <br>
+            <button id = 'zer' class = 'num' onclick = 'ipt.Num(0);'> 0 </button>
+            <button id = 'clr' class = 'opr' onclick = 'location.reload();'> AC </button>
+            <button id = 'eqr' class = 'opr' onclick = 'cal.eqr(cal.opr);'> = </button>
+            <button id = 'div' class = 'opr' onclick = 'cal.opt("÷");'> ÷ </button>
+        </p>
+    </div>
+    <script>
+            var Box = document.getElementById('outbox');
+            
+            //숫자 입력
+            ipt = {};
+            ipt.ar = [];
+            ipt.N = 0;
+            
+            ipt.Num = function(a) {
+                this.ar.push(a);
+                opt.Num();
+            }
+            //숫자 출력
+            opt = {};
+            
+            opt.Num = function() {
+                ipt.N = ipt.ar.join('')*1;
+                Box.innerHTML = ipt.N;
+            };
+            //숫자 계산
+            cal = {};
+            cal.opr = ("");
+            cal.keep = 0;
+            cal.Next = function() {
+                ipt.ar = [];
+                this.keep = ipt.N;
+            }
+    
+            cal.opt = function(a) {
+                this.Next ();
+                this.opr = a;
+            }
+    
+            cal.eqr = function (opr) {
+                switch (opr) {
+                    case "+" : ans = this.keep + ipt.N
+                        break;
+                    case "-" : ans = this.keep - ipt.N
+                        break;
+                    case "X" : ans = this.keep * ipt.N
+                        break;
+                    case "÷" : ans = this.keep / ipt.N
+                        break;
+                }
+                Box.innerHTML = ans;
+                ipt.N = ans;
+            }
+            
+            
+            
+            
+            </script>
+</body>
+</html>
