@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>calculatorIf</title>
+</head>
+<body>
+        <h1>문자열 계산기 구현하기</h1>
+        <div>
+            첫번째 숫자를 입력하세요 <input type=text id = n1 ><br>
+            두번째 숫자를 입력하세요 <input type=text id = n2 ><br>
+            어떤 계산을 할까요?(+ , - , * , / 중 한가지 입력) <input typoe=text id = opr><br>
+            <button onclick='main();'>계산</button>
+        </div>
+        <div id = 'output'></div>
+        <script>
+            var main = function () {
+                console.log('calculator');
+                var out = document.getElementById('output');
+                var n1 = document.getElementById('n1').value*1;
+                var n2 = document.getElementById('n2').value*1;
+                var opr = document.getElementById('opr').value;
+                switch(opr) {
+                    case('+') : out.innerHTML = '더하기 : ' + (n1 + n2)
+                    break;
+                    case('-') : out.innerHTML = '뺴기 : ' + (n1 - n2);
+                    break;
+                    case('*') : out.innerHTML = '곱하기 : ' + (n1 * n2);
+                    break;
+                    case('/') : out.innerHTML = '나누기 : ' + (n1 / n2);
+                    break;
+                    default : alert('연산자를 확인해주세요.');
+                }
+            }
+           
+        </script>
+
+
+</body>
+</html>
