@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>calculatorFunc</title>
+</head>
+<body>
+        <h1>연속된 값 입력받는 계산기 구현하기(함수)</h1>
+        <div>
+            <h3>설명 </h3>
+            숫자와 연산자를 번갈아가며 입력합니다. 연산자는 +,-,*,/ 만 입력가능합니다. 
+            종료를 원하실 때는 연산자 대신 q를 입력해주세요.
+            <h3>계산 시작</h3>
+            <button onclick = 'main();'>시작</button>
+            <h3>계산로그</h3>
+                <p id ='log'></p>
+        </div>
+        <script>
+            var getFirstValue = function () {
+                var ipt = prompt ('첫번째 숫자 입력');
+                var n1 = Number(ipt);
+                return n1;
+                }
+            var getLog = function(Nlog,n1,n2,opr) {
+                Nlog += ('<br>' + opr + n2 + ' = ' + n1);
+                return Nlog;
+            }
+            var getSecondValue = function() {
+                var ipt = prompt ('다음 숫자 입력');
+                var n2 = Number(ipt);
+                return n2;
+            }
+            var getOperator = function() {
+                var opr = prompt ('계산 종류 입력 (+,-,*,/)\n종료를 원하시면 q를 입력해주세요');
+                if (opr !=='+' && opr !=='-' && opr !=='*' && opr !=='/' && opr !== 'q') {
+                    opr = prompt ('연산자를 확인 후 다시 입력해 주세요\n(+,-,*,/ 만 가능)');
+                } 
+                return opr;
+            }
+            var calculate = function (n1, n2, opr) {
+                if(opr === '+') {
+                    n1 += n2; 
+                } else if(opr === '-') {
+                    n1 -= n2;
+                } else if(opr === '*') {
+                    n1 *= n2;
+                } else if(opr === '/') {
+                    n1 /= n2;
+                }
+                console.log(n1);
+                return n1;
+            }
+            var print = function(log) {
+                var loG = document.getElementById('log');
+            loG.innerHTML = log;
+            }
+            var main = function() {
+                var n1 = getFirstValue();
+                var Nlog = '' + n1;
+                while(true) {
+                    
+                    var opr = getOperator();
+                    if (opr === 'q') {
+                    break;
+                    }
+                    var n2 = getSecondValue();
+                    n1 = calculate(n1,n2,opr);
+                    Nlog = getLog(Nlog,n1,n2,opr);
+                    
+                }
+                print(Nlog);
+            }
+            
+            
+            
+            
+            
+            
+           
+        </script>
+
+
+</body>
+</html>
