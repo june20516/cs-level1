@@ -72,28 +72,27 @@
 
     //숫자 비교
     Verify = {};
+    Verify.Strike = 0;
+    Verify.Ball = 0;
     Verify.Compare = function () { //Answer.Arr에서 1개씩 뽑아와 Qeustion.Arr와 비교한다. 
-        strike = 0;
-        ball = 0;
         for(var i = 0; i < 3; i++) {
             var a = Answer.Arr[i];
             this.isStrike(a,i);
             this.isBall(a,i);
-            console.log('회차 : ',i,'  s :',strike,'  b :',ball);
         }
-        Output.Ans += '<br>' + Answer.Arr[0] + '&nbsp;&nbsp;' + Answer.Arr[1] + '&nbsp;&nbsp;' + Answer.Arr[2] + ' <---- ' + strike + ' strike / ' + ball + ' ball  !' ;
-        this.Correct(strike);
+        Output.Ans += '<br>' + Answer.Arr[0] + '&nbsp;&nbsp;' + Answer.Arr[1] + '&nbsp;&nbsp;' + Answer.Arr[2] + ' <---- ' + this.Strike + ' strike / ' + this.Ball + ' ball  !' ;
+        this.Correct(this.Strike);
     }
 
     Verify.isStrike = function (a, i) {
         if ( Question.Arr.includes(a) && Question.Arr.indexOf(a) === i) {
-            return strike += 1;
+            return this.Strike += 1;
         }
     }
 
     Verify.isBall = function (a, i) {
         if ( Question.Arr.includes(a) && Question.Arr.indexOf(a) !== i) {
-            return ball += 1;
+            return this.Ball += 1;
         }
     }
 
