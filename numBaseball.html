@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #result {
+    font-family: "Courier New", Courier, monospace;    
+    }
+    #cong {
+    color: red;
+    font-size: 2em;
+    }
+    </style>
+</head>
+<body>
+    <h2> 숫자 야구 ⚾  ️</h2>
+    <h4> 설명 ! </h4>
+    <p> 문제 생성 버튼을 누르면 0~9 중, 중복되지 않는 숫자 3개가 생성됩니다. <br>
+        플레이어가 3자리수 답을 입력합니다. 입력한 숫자가 위치까지 일치하면 strike, 숫자는 있지만 위치는 다르면 ball입니다. <br> 3strike인 숫자를 찾아내면 성공입니다.</p>
+
+    <button onclick = 'Question.Create(); Output.Quest();'>문제생성</button> &nbsp;&nbsp;&nbsp;&nbsp;
+    답 :  <input type=text id='inputbox'> 
+    <button onclick = 'Answer.Input(); Verify.Compare(); Output.Print(Output.Ans);'>제출 </button>
+    <p id='create'></p>
+    <p id='result'></p>
+    <p id='cong'></p>
+
+    <script>
+    //숫자 생성
+    Question = {};
+    Question.Arr = [];
+    Question.Create = function () {
+        this.Arr = [];
+        for (var i = 0; this.Arr.length < 3; i++){
+            var a = Math.floor(Math.random()*10);
+            this.Dupl(a);
+        }
+        console.log(this.Arr);
+    }
+
+    Question.Dupl = function (a) { //문제에 중복숫자 방지
+        if (!this.Arr.includes(a)){
+            this.Arr.push(a);
+        }
+    }
+
+
+    //숫자 입력
+    Answer = {};
+    Answer.Arr = [];
+    Answer.Input = function () {
+        this.Arr = [];
+        var x = document.getElementById('inputbox').value;
+        for (var i = 0; this.Arr.length < 3; i++){
+            var a = Number(x[i]);
+            this.Dupl(a);
+        }
+        console.log(this.Arr);
+        Output.Quest();
+    }
+    Answer.Dupl = function (a) { //입력에 중복숫자 방지
+        if (!this.Arr.includes(a)){
+            this.Arr.push(a);
+        } else {
+            alert('중복된 숫자는 입력할 수 없습니다.');
+            return;
+        }
+    }
+
+    //숫자 비교
+    Verify = {};
+    Verify.Compare = function () { //Answer.Arr에서 1개씩 뽑아와 Qeustion.Arr와 비교한다. 
+        strike = 0;
+        ball = 0;
+        for(var i = 0; i < 3; i++) {
+            var a = Answer.Arr[i];
+            this.isStrike(a,i);
+            this.isBall(a,i);
+            console.log('회차 : ',i,'  s :',strike,'  b :',ball);
+        }
+        Output.Ans += '<br>' + Answer.Arr[0] + '&nbsp;&nbsp;' + Answer.Arr[1] + '&nbsp;&nbsp;' + Answer.Arr[2] + ' <---- ' + strike + ' strike / ' + ball + ' ball  !' ;
+        this.Correct(strike);
+    }
+
+    Verify.isStrike = function (a, i) {
+        if ( Question.Arr.includes(a) && Question.Arr.indexOf(a) === i) {
+            return strike += 1;
+        }
+    }
+
+    Verify.isBall = function (a, i) {
+        if ( Question.Arr.includes(a) && Question.Arr.indexOf(a) !== i) {
+            return ball += 1;
+        }
+    }
+
+    Verify.Correct = function (s) {
+        if (s===3){
+            Output.Cong();
+        }
+    }
+
+    //결과 출력
+    Output = {};
+    Output.Ans = ('');
+    Output.Quest = function () {
+        var x = document.getElementById('create');
+        x.innerHTML = '⚾ ⚾ ⚾ <---- 생성되었습니다! 맞춰보세요!'
+    }
+    Output.Print = function (Ans) {
+        var x = document.getElementById('result');
+        x.innerHTML = Ans;
+    }
+    Output.Cong = function () {
+        var x = document.getElementById('cong');
+        x.innerHTML = '정답입니다!!' ;
+    }
+    </script>
+</body>
+</html>
