@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>숫자 야구 ⚾ ! </title>
     <style>
     #result {
     font-family: "Courier New", Courier, monospace;    
@@ -80,6 +80,16 @@
             this.isStrike(a,i);
             this.isBall(a,i);
         }
+        Verify.log();
+        Verify.init();
+    }
+
+    Verify.init = function () {
+        this.Strike = 0;
+        this.Ball = 0;
+    }
+
+    Verify.log = function (){
         Output.Ans += '<br>' + Answer.Arr[0] + '&nbsp;&nbsp;' + Answer.Arr[1] + '&nbsp;&nbsp;' + Answer.Arr[2] + ' <---- ' + this.Strike + ' strike / ' + this.Ball + ' ball  !' ;
         this.Correct(this.Strike);
     }
