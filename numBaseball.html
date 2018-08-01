@@ -21,9 +21,9 @@
     <p> 문제 생성 버튼을 누르면 0~9 중, 중복되지 않는 숫자 3개가 생성됩니다. <br>
         플레이어가 3자리수 답을 입력합니다. 입력한 숫자가 위치까지 일치하면 strike, 숫자는 있지만 위치는 다르면 ball입니다. <br> 3strike인 숫자를 찾아내면 성공입니다.</p>
 
-    <button onclick = 'Question.Create(); Output.Quest();'>문제생성</button> &nbsp;&nbsp;&nbsp;&nbsp;
+    <button onclick = 'Question.Create();'>문제생성</button> &nbsp;&nbsp;&nbsp;&nbsp;
     답 :  <input type=text id='inputbox'> 
-    <button onclick = 'Answer.Input(); Verify.Compare(); Output.Print(Output.Ans);'>제출 </button>
+    <button onclick = 'Answer.main();'>제출 </button>
     <p id='create'></p>
     <p id='result'></p>
     <p id='cong'></p>
@@ -38,7 +38,7 @@
             var a = Math.floor(Math.random()*10);
             this.Dupl(a);
         }
-        console.log(this.Arr);
+        Output.Quest();
     }
 
     Question.Dupl = function (a) { //문제에 중복숫자 방지
@@ -46,20 +46,31 @@
             this.Arr.push(a);
         }
     }
+    Question.Check = function () {
+        if (this.Arr.length !==3) {
+            alert('문제를 먼저 생성해 주세요');
+            return;
+        }
+    }
 
 
     //숫자 입력
     Answer = {};
     Answer.Arr = [];
+    Answer.main = function () {
+        Question.Check(); 
+        this.Input(); 
+        Verify.Compare(); 
+        Output.Print(Output.Ans);
+    }
     Answer.Input = function () {
         this.Arr = [];
         var x = document.getElementById('inputbox').value;
-        for (var i = 0; this.Arr.length < 3; i++){
+        for (var i = 0; i < 3; i++){
             var a = Number(x[i]);
             this.Dupl(a);
         }
         console.log(this.Arr);
-        Output.Quest();
     }
     Answer.Dupl = function (a) { //입력에 중복숫자 방지
         if (!this.Arr.includes(a)){
