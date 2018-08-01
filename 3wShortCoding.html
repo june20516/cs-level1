@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3주차 짧은 코딩 _ 숫자 맞추기</title>
+</head>
+<body>
+    <h1>랜덤 숫자 맞추기 !!</h1>
+
+    <h4>숫자 생성(0~99)</h4> <button onclick = 'creat.creatNum();'>생성</button>
+    <p id = 'creat'></p>
+
+    <h4>숫자 입력</h4> 
+    <input type=text id='inputbox'>
+    <button onclick = 'main();'>제출</button><br>
+    <span id = 'input'>---</span> 번째 시도입니다.
+
+    <h4>결과</h4>
+    <p id = 'result'></p>
+    
+    <script>
+    //생성
+    creat = {};
+    creat.Num = 0;
+    creat.reload = function () {
+        location.reload();
+    }
+    creat.creatNum = function () {
+        this.Num = Math.floor(Math.random()*100);
+        var done = document.getElementById('creat');
+        console.log(this.Num);
+        done.innerHTML = '생성되었습니다.'
+    }
+    
+
+    //입력
+    input = {};
+    input.Num = 0;
+    input.try = 0;
+    input.inputNum = function () {
+        this.Num = document.getElementById('inputbox').value*1;
+        this.try+= 1;
+        var time = document.getElementById('input');
+        time.innerHTML = this.try ;
+    }
+
+    //결과
+    result = {};
+    result.output = '';
+    result.compare = function () {
+        if (creat.Num < input.Num) {
+            this.output += ('<br>' + input.try + '번째 답 : ' + input.Num + '<br> 입력하신 숫자보다 적습니다.' );
+        } else if ( creat.Num > input.Num) {
+            this.output += ('<br>' + input.try + '번째 답 : ' + input.Num + '<br> 입력하신 숫자보다 큽니다.' );
+        } else if ( creat.Num === input.Num) {
+            this.output += ("<br>" + input.try + "번째 답 : " + input.Num + "<br> 정답입니다!!!<br><button onclick='creat.reload();'>다시하기</button>" );
+        }
+    }
+    result.print = function () {
+        var rst = document.getElementById('result');
+        rst.innerHTML = this.output;
+    }
+    
+    //실행
+    function main() {
+        input.inputNum();
+        result.compare();
+        result.print();
+    }
+
+    </script>
+</body>
+</html>
