@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    계산식 : <input type=text id='equations'>&nbsp; <button onclick = 'main();'> 제출 </button>
+    <br><br><br>
+    정답 <p id = 'answer' style='font-size:2em;'></p>
+
+
+<script>
+    Input = {};
+    Input.arr = [];
+    Input.take = function (){
+        var x = document.getElementById('equations').value;
+        return x;
+    };
+    Input.div = function(a) {
+        this.arr = a.split(' ');
+        console.log(this.arr);
+    }
+    Input.pass = function() {
+        for (i = 0; i < this.arr.length; i+=2) {
+            Calcul.arr[i] = Number(this.arr[i]);
+            Calcul.arr[i+1] = this.arr[i+1];
+        }
+        console.log(Calcul.arr);
+    }
+
+    Input.main = function () {
+        Input.take();
+        var a = Input.take();
+        Input.div(a);
+        Input.pass();
+    }
+
+    Calcul = {};
+    Calcul.arr = [];
+    Calcul.calculate = function (a, n1, n2) {
+        switch (this.arr[a]){
+            case '+' : 
+            n1 += n2;
+            break;
+            case '-' :
+            n1 -= n2;
+            break;
+            case '*' :
+            n1 *= n2;
+            break;
+            case '/' :
+            n1 /= n2;
+            break;
+        }
+        return n1;
+    }
+
+    Calcul.find = function (i) {
+            var a = this.opr(i);
+            var n2 = this.arr[i+1];
+            return n2;
+    }
+    
+    Calcul.opr = function (a) {
+        if (this.arr[a] ==='+' || this.arr[a] ==='-' || this.arr[a] ==='*' || this.arr[a] ==='/') {
+            return a;
+        }    
+    }
+
+    Calcul.main = function() {
+        var n1 = this.arr[0];
+        for (var i = 1; i < this.arr.length; i+=2) {
+            var a = this.opr(i);
+            console.log("연산자  " + this.arr[a]);
+            var n2 = this.find(a);
+            console.log(" 숫자  " + n2);
+            n1 = this.calculate(a, n1, n2);
+            console.log(n1);
+        }
+        return n1;
+    }
+
+    function main() {
+        Input.main();
+        var n1 = Calcul.main();
+        var x = document.getElementById('answer')
+        x.innerHTML = n1;
+    };
+</script>
+</body>
+</html>
