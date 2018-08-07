@@ -46,7 +46,7 @@
             this.Arr.push(a);
         }
     }
-    Question.Check = function () {
+    Question.Check = function () { //문제 미생성 방지
         if (this.Arr.length !==3) {
             alert('문제를 먼저 생성해 주세요');
             return;

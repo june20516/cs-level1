@@ -36,7 +36,6 @@ var Box = document.getElementById('outbox');
             }
     
             cal.opt = function(a) {  //연산자를 입력하였을 때 작동하는 함수.   
-                // this.init(); //초기화 인자 조절. =를 누른 이후에는 연산자 입력시에 기존 계산 안되도록.
                 this.calcul(this.opr1); //1. 기존 계산을 완료,
                 this.opr2 = a; //2. 연산자를 지금 눌러진 연산자로 변경.
                 opt.Num(ipt.n1);  // 3. 박스에 결과 출력 
