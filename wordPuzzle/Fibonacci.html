@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fibonacci</title>
+</head>
+
+<body>
+    <script>
+        //일반 재귀
+        var fibo = function(a) {
+            if (a === 0) {
+                return 0;
+            } else if (a === 1) {
+                return 1;
+            } else {
+                return fibo(a-1) + fibo(a-2);
+            }
+        }
+
+        //다이나믹 프로그래밍
+        var arr = [0,1]; //arr에 호출한 함수 결과값을 저장
+        function fibo_d(n) {
+            if(arr[n] == undefined) { //arr에 값이 없는 경우?
+                arr[n] = fibo_d(n-1) + fibo_d(n-2); //연산
+            }
+            return arr[n];
+        }
+
+        console.time();
+        fibo(40);
+        console.timeEnd();
+
+        console.time();
+        fibo_d(40)
+        console.timeEnd();
+
+    </script>
+</body>
+
+</html>
