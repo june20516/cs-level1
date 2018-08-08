@@ -13,6 +13,18 @@ quest.button = function () { //배열을 버튼으로 만들기
         x.appendChild(btn);
     }
 }
+quest.shuffle = function () { //섞기
+    var x = Math.random() * 9;
+    var y = Math.random() * 2;
+    console.log('push : ', x, 'swap : ', y);
+    for (i = 0; i < x; i++) {
+        control.push();
+        for ( j = 0; j < y; j++) {
+            control.swap();
+        }
+    }
+    check();
+}
 
 quest.push();
 quest.button();
