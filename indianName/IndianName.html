@@ -1,85 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>인디언 이름 만들기</title>
+    <style>
+        #indianName {
+            color: blueviolet; font-size: 2em;
+        }
+    </style>
 </head>
+
 <body>
+    <h1>인디언 이름 ! </h1>
+    <h4>당신의 이름을 입력해주세요.</h4>
+    <p>한국어 3글자 이름을 기준으로 제작되었습니다. 외자 이름은 성과 이름을 공백으로 구분해주세요.</p>
+    <input type='text' id='name'>
+    <button onclick='main();'>변환</button>
+    <p>당신의 인디언식 이름은 ...</p>
+    <p id='indianName'></p>
+    <p>입니다.</p>
     <script>
         //입력
         inPut = {};
-        inPut.arr = [];
         inPut.uni = [];
-        inPut.take = function () {
+        inPut.take = function (i) {
             var x = document.getElementById('name').value
-            this.arr = x.split();
+            for (var i = 0; i < x.length; i++) {
+                this.uni[i] = x.charCodeAt(i);
+            }
         }
-        
-        inPut.trans = function(i) {
-            var a  = this.arr[i]
-            this.uni[i] =  a.charCodeAt(0);
-        }
-        
-        //출력
-        
-        //첫번째 글자 
-        10 :
-        11 :
-        12 :
-        13 :
-        14 :
-        15 :
-        16 :
-        17 :
-        18 :
-        19 :
 
+        //출력
+        tRans = {};
+        tRans.uni = [];
+        tRans.mod = function () {
+            for (var i = 0; i < 3; i++) {
+                tRans.uni[i] = Math.floor(inPut.uni[i] % 100 / 5);
+            }
+            var fir = firstLet(this.uni[0]);
+            var sec = secondLet(this.uni[1]);
+            var thr = thirdLet(this.uni[2]);
+            console.log(fir, ' ', sec, ' ', thr);
+            return fir + ' ' + sec + ' ' + thr;
+        }
+
+        //글자 
+        firstLet = function (codeN) {
+            var first = '';
+            switch (codeN) {
+                case 1: first = '어두운'
+                    break;
+                case 2: first = '사나운'
+                    break;
+                case 3: first = '좋은냄새가나는'
+                    break;
+                case 4: first = '비겁한'
+                    break;
+                case 5: first = '숨쉬는'
+                    break;
+                case 6: first = '타오르는'
+                    break;
+                case 7: first = '흔들리는'
+                    break;
+                case 8: first = '잘생긴'
+                    break;
+                case 9: first = '담대한'
+                    break;
+                case 10: first = '기쁜'
+                    break;
+                case 11: first = '소심한'
+                    break;
+                case 12: first = '찬란한'
+                    break;
+                case 13: first = '얼어붙은'
+                    break;
+                case 14: first = '재빠른'
+                    break;
+                case 15: first = '버려진'
+                    break;
+                case 16: first = '빛나는'
+                    break;
+                case 17: first = '온순한'
+                    break;
+                case 18: first = '느린'
+                    break;
+                case 19: first = '슬픈'
+                    break;
+                case 20: first = '투명한'
+                    break;
+            }
+            return first;
+        }
+
+        secondLet = function (codeN) {
+            var second = '';
+            switch (codeN) {
+                case 1: second = '늑대의'
+                    break;
+                case 2: second = '구름의'
+                    break;
+                case 3: second = '초원의'
+                    break;
+                case 4: second = '나무의'
+                    break;
+                case 5: second = '바위의'
+                    break;
+                case 6: second = '달의'
+                    break;
+                case 7: second = '숲의'
+                    break;
+                case 8: second = '독수리의'
+                    break;
+                case 9: second = '태양의'
+                    break;
+                case 10: second = '잿더미의'
+                    break;
+                case 11: second = '폭포의'
+                    break;
+                case 12: second = '도마뱀의'
+                    break;
+                case 13: second = '수정의'
+                    break;
+                case 14: second = '화살의'
+                    break;
+                case 15: second = '칼날의'
+                    break;
+                case 16: second = '깃털의'
+                    break;
+                case 17: second = '발톱의'
+                    break;
+                case 18: second = '물소의'
+                    break;
+                case 19: second = '뱀의'
+                    break;
+                case 20: second = '번개의'
+                    break;
+            }
+            return second;
+        }
+
+        thirdLet = function (codeN) {
+            var third = '';
+            switch (codeN) {
+                case 1: third = '마음'
+                    break;
+                case 2: third = '영혼'
+                    break;
+                case 3: third = '열정'
+                    break;
+                case 4: third = '탄생'
+                    break;
+                case 5: third = '의지'
+                    break;
+                case 6: third = '믿음'
+                    break;
+                case 7: third = '눈'
+                    break;
+                case 8: third = '도약'
+                    break;
+                case 9: third = '다짐'
+                    break;
+                case 10: third = '발자국'
+                    break;
+                case 11: third = '웃음'
+                    break;
+                case 12: third = '분노'
+                    break;
+                case 13: third = '내면'
+                    break;
+                case 14: third = '기도'
+                    break;
+                case 15: third = '예언'
+                    break;
+                case 16: third = '숨결'
+                    break;
+                case 17: third = '승리'
+                    break;
+                case 18: third = '후회'
+                    break;
+                case 19: third = '정신'
+                    break;
+                case 20: third = '보답'
+                    break;
+            }
+            return third;
+        }
+        function print() {
+            var x = document.getElementById('indianName');
+            var y = tRans.mod();
+            x.innerHTML = y;
+        }
+        function main() {
+            inPut.take();
+            console.log('inPut.arr : ', inPut.arr);
+            tRans.mod();
+            console.log('tRans.uni = ', tRans.uni);
+            print();
+        }
     </script>
 </body>
+
 </html>
-
-
-가여운
-우스운
-잘생긴
-비겁한
-비행하는
-펼쳐진
-어두운
-깊은
-빛나는
-은근한
-숨쉬는
-흔들리는
-붉은
-변화하는
-절실한
-숨막히는
-행복한
-기쁜
-찬란한
-슬픈
-벅차오르는
-감춰진
-굳건한
-단단한
-흐르는
-타오르는
-얼어붙은
-버려진
-끈질긴
-둥근
-사나운
-온순한
-따뜻한
-시원한
-좋은냄새가나는
-느린
-재빠른
-쉬운
-어려운
-담대한
-소심한
-
