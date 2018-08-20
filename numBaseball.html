@@ -13,13 +13,16 @@
     color: red;
     font-size: 2em;
     }
+    .lnt {
+        color: violet;
+    }
     </style>
 </head>
 <body>
     <h2> 숫자 야구 ⚾  ️</h2>
     <h4> 설명 ! </h4>
-    <p> 문제 생성 버튼을 누르면 0~9 중, 중복되지 않는 숫자 3개가 생성됩니다. <br>
-        플레이어가 3자리수 답을 입력합니다. 입력한 숫자가 위치까지 일치하면 strike, 숫자는 있지만 위치는 다르면 ball입니다. <br> 3strike인 숫자를 찾아내면 성공입니다.</p>
+    <p> 문제 생성 버튼을 누르면 0~9 중, 중복되지 않는 숫자 <span class='lnt'></span>개가 생성됩니다. <br>
+    플레이어가 <span class='lnt'></span>자리수 답을 입력합니다. 입력한 숫자가 위치까지 일치하면 strike, 숫자는 있지만 위치는 다르면 ball입니다. <br> <span class='lnt'></span>strike인 숫자를 찾아내면 성공입니다.</p>
 
     <button onclick = 'Question.Create();'>문제생성</button> &nbsp;&nbsp;&nbsp;&nbsp;
     답 :  <input type=text id='inputbox'> 
@@ -31,10 +34,11 @@
     <script>
     //숫자 생성
     Question = {};
+    Question.lnt = Number(prompt('문제의 자릿수를 정하세요! (3~9)')) ///문제 길이 설정
     Question.Arr = [];
     Question.Create = function () {
         this.Arr = [];
-        for (var i = 0; this.Arr.length < 3; i++){
+        for (var i = 0; this.Arr.length < this.lnt; i++){
             var a = Math.floor(Math.random()*10);
             this.Dupl(a);
         }
@@ -47,7 +51,7 @@
         }
     }
     Question.Check = function () { //문제 미생성 방지
-        if (this.Arr.length !==3) {
+        if (this.Arr.length !==this.lnt) {
             alert('문제를 먼저 생성해 주세요');
             return;
         }
@@ -66,7 +70,7 @@
     Answer.Input = function () {
         this.Arr = [];
         var x = document.getElementById('inputbox').value;
-        for (var i = 0; i < 3; i++){
+        for (var i = 0; i < Question.lnt; i++){
             var a = Number(x[i]);
             this.Dupl(a);
         }
@@ -86,7 +90,7 @@
     Verify.Strike = 0;
     Verify.Ball = 0;
     Verify.Compare = function () { //Answer.Arr에서 1개씩 뽑아와 Qeustion.Arr와 비교한다. 
-        for(var i = 0; i < 3; i++) {
+        for(var i = 0; i < Question.lnt; i++) {
             var a = Answer.Arr[i];
             this.isStrike(a,i);
             this.isBall(a,i);
@@ -101,7 +105,11 @@
     }
 
     Verify.log = function (){
-        Output.Ans += '<br>' + Answer.Arr[0] + '&nbsp;&nbsp;' + Answer.Arr[1] + '&nbsp;&nbsp;' + Answer.Arr[2] + ' <---- ' + this.Strike + ' strike / ' + this.Ball + ' ball  !' ;
+        Output.Ans += '<br>' 
+        for (var i = 0; i < Question.lnt; i++) {
+            Output.Ans += Answer.Arr[i] + '&nbsp;&nbsp;'; 
+        }
+        Output.Ans += ' <---- ' + this.Strike + ' strike / ' + this.Ball + ' ball  !' ;
         this.Correct(this.Strike);
     }
 
@@ -118,7 +126,7 @@
     }
 
     Verify.Correct = function (s) {
-        if (s===3){
+        if (s===Question.lnt){
             Output.Cong();
         }
     }
@@ -126,9 +134,19 @@
     //결과 출력
     Output = {};
     Output.Ans = ('');
+    Output.lnt = function ()  { /// 문제 길이를 문제 설명에 적용
+        var x = document.getElementsByClassName('lnt')
+        for (var i = 0; i < x.length; i++) {
+            x[i].innerHTML = Question.lnt;
+        }
+    }
     Output.Quest = function () {
         var x = document.getElementById('create');
-        x.innerHTML = '⚾ ⚾ ⚾ <---- 생성되었습니다! 맞춰보세요!'
+        var ball = '';
+        for (var i = 0; i < Question.lnt; i++) {
+            ball += '⚾';
+        }
+        x.innerHTML = ball + ' <---- 생성되었습니다! 맞춰보세요!' ;
     }
     Output.Print = function (Ans) {
         var x = document.getElementById('result');
@@ -138,6 +156,7 @@
         var x = document.getElementById('cong');
         x.innerHTML = '정답입니다!!' ;
     }
+    Output.lnt();
     </script>
 </body>
 </html>
